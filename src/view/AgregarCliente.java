@@ -5,20 +5,18 @@
  */
 package view;
 
+import clases.Contacto;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Celi Leandro
- */
 public class AgregarCliente extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form AgregarCliente
      */
+    Contacto contacto;
+
     public AgregarCliente() {
         initComponents();
-        
     }
 
     public boolean checkJtf() {
@@ -240,8 +238,19 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
         if (!checkJtf()) {
+            contacto = new Contacto();
+            contacto.setDni(jTFdni.getText());
+            contacto.setNombre(jTFnombre.getText());
+            contacto.setApellido(jTFapellido.getText());
+            contacto.setDireccion(jTFdireccion.getText());
+            contacto.setCiudad(jTFciudad.getText());
+            Long tel = Long.parseLong(jTFtelefono.getText());
 
-            // Carga de datos
+            
+            // Se agrega contacto
+            MenuPrincipal.directorio.agregarContacto(tel, contacto);
+
+           
             JOptionPane.showMessageDialog(this, "El Cliente  fue agregado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "Complete los campos ", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -251,11 +260,11 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTFdniMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTFdniMousePressed
-        
+
     }//GEN-LAST:event_jTFdniMousePressed
 
     private void jTFdniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFdniFocusLost
-       // jLdniMensaje.setVisible(true);// TODO add your handling code here:
+        // jLdniMensaje.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jTFdniFocusLost
 
 
