@@ -30,7 +30,6 @@ public class Contacto {
 
     public Contacto() {
     }
-     
 
     public String getApellido() {
         return apellido;

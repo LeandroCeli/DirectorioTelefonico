@@ -18,10 +18,17 @@ public class Directorio
     public Directorio() {
         directorio = new TreeMap<>();
     }
-   
     public  void agregarContacto(Long telefono, Contacto contacto){
         directorio.put(telefono, contacto);
     }
+    
+    public Contacto busarContacto(Long numeroTelefono)
+    {
+        
+        // Atencion hay q ver el valor q retorna si el telefono no esta almacenado
+        return (directorio.get(numeroTelefono));
+    }
+    
    
     public Set<Long> buscarTelefono(String apellido) {
         Set<Long> telefonos = new TreeSet<>();
