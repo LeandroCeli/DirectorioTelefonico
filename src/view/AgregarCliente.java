@@ -238,7 +238,7 @@ public class AgregarCliente extends javax.swing.JInternalFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
         if (!checkJtf()) {
-            contacto = new Contacto();
+            Contacto contacto = new Contacto();
             contacto.setDni(jTFdni.getText());
             contacto.setNombre(jTFnombre.getText());
             contacto.setApellido(jTFapellido.getText());
