@@ -46,6 +46,7 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
         FieldBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaClientes = new javax.swing.JTable();
+        BotonSalir = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 153, 255));
@@ -101,6 +102,13 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(TablaClientes);
 
+        BotonSalir.setText("Salir");
+        BotonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,6 +135,10 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane1)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,7 +155,9 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
                     .addComponent(BotonBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BotonSalir)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -226,6 +240,10 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
     private void FieldBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FieldBuscarKeyTyped
 
     }//GEN-LAST:event_FieldBuscarKeyTyped
+
+    private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_BotonSalirActionPerformed
     
     public void cargarTabla(){
         modelo.addColumn("DNI");
@@ -239,6 +257,7 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonBuscar;
+    private javax.swing.JButton BotonSalir;
     private javax.swing.JComboBox<String> ComboBuscar;
     private javax.swing.JTextField FieldBuscar;
     private javax.swing.JTable TablaClientes;
