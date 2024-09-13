@@ -13,7 +13,7 @@ import java.util.TreeSet;
 public class Directorio 
 {
     
-    private TreeMap<Long, Contacto> directorio;
+    public TreeMap<Long, Contacto> directorio;
 
     public Directorio() {
         directorio = new TreeMap<>();
