@@ -5,17 +5,28 @@
  */
 package view;
 
+import clases.Contacto;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Celi Leandro
  */
 public class BuscarCliente extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form BuscarCliente
-     */
+
+    private DefaultTableModel modelo = new DefaultTableModel();
+    
     public BuscarCliente() {
         initComponents();
+        TextoBuscar.setVisible(false);
+        FieldBuscar.setVisible(false);
+        BotonBuscar.setVisible(false);
+        cargarTabla();
     }
 
     /**
@@ -27,21 +38,213 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        ComboBuscar = new javax.swing.JComboBox<>();
+        BotonBuscar = new javax.swing.JButton();
+        TextoBuscar = new javax.swing.JLabel();
+        FieldBuscar = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablaClientes = new javax.swing.JTable();
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Buscar Clientes");
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel2.setText("Elegir busqueda:");
+
+        ComboBuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Por telefono", "Por apellido", "Por ciudad" }));
+        ComboBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBuscarActionPerformed(evt);
+            }
+        });
+
+        BotonBuscar.setText("Buscar");
+        BotonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonBuscarActionPerformed(evt);
+            }
+        });
+
+        TextoBuscar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        TextoBuscar.setText("Ingrese el telefono:");
+
+        FieldBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                FieldBuscarKeyTyped(evt);
+            }
+        });
+
+        TablaClientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "DNI", "Nombre", "Apellido", "Direccion", "Ciudad", "Telefono"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(TablaClientes);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(TextoBuscar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(FieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BotonBuscar))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(ComboBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 137, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(ComboBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonBuscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarActionPerformed
+        
+        String selectedItem = (String) ComboBuscar.getSelectedItem();              
+        modelo.setRowCount(0);
+              
+        if (selectedItem.equals("Por telefono")) {
+            try {
+                Long numero = Long.parseLong(FieldBuscar.getText());
+                Contacto contacto = MenuPrincipal.directorio.busarContacto(numero);
+                if (contacto != null) {
+                    modelo.addRow(new Object[]{contacto.getDni(), contacto.getNombre(), contacto.getApellido(), contacto.getDireccion(), contacto.getCiudad(), numero});
+                } else {
+                    JOptionPane.showMessageDialog(this, "Contacto no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Numero de telefono invalido o campo vacio", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else if(selectedItem.equals("Por apellido")) {
+            Set<Long> telefonos = MenuPrincipal.directorio.buscarTelefono(FieldBuscar.getText());
+            if(!telefonos.isEmpty()){
+            for (Long telefono : telefonos) {
+                 Contacto contacto2 = MenuPrincipal.directorio.busarContacto(telefono);
+                if (contacto2 != null) {
+                    modelo.addRow(new Object[]{contacto2.getDni(), contacto2.getNombre(), contacto2.getApellido(), contacto2.getDireccion(), contacto2.getCiudad(), telefono});
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontraron contactos con ese apellido", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else if(selectedItem.equals("Por ciudad")){
+            ArrayList<Contacto> contacto3 = MenuPrincipal.directorio.buscarContactos(FieldBuscar.getText());
+            if(!contacto3.isEmpty()){
+                for (Contacto contacto : contacto3) {
+                    for (Map.Entry<Long, Contacto> entry : MenuPrincipal.directorio.ObtenerContactos()) {
+                    if (entry.getValue().equals(contacto)) {
+                    modelo.addRow(new Object[]{contacto.getDni(), contacto.getNombre(), contacto.getApellido(), contacto.getDireccion(), contacto.getCiudad(),entry.getKey()});
+                    break;
+                    }
+                    }
+                }
+            }else{
+                 JOptionPane.showMessageDialog(this, "No se encontraron contactos en esa ciudad", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+                     
+            
+    }//GEN-LAST:event_BotonBuscarActionPerformed
+
+    private void ComboBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBuscarActionPerformed
+        String selectedItem = (String) ComboBuscar.getSelectedItem();
+        
+        
+        if(selectedItem.equals("Por telefono")){
+            TextoBuscar.setVisible(true);
+            TextoBuscar.setText("Ingrese el telefono: ");
+            FieldBuscar.setVisible(true);
+            BotonBuscar.setVisible(true);
+        }
+            
+        if(selectedItem.equals("Por ciudad")){
+            TextoBuscar.setVisible(true);
+            TextoBuscar.setText("Ingrese la ciudad: ");
+            FieldBuscar.setVisible(true);
+            BotonBuscar.setVisible(true);
+        }
+        if(selectedItem.equals("Por apellido")){
+            TextoBuscar.setVisible(true);
+            TextoBuscar.setText("Ingrese el apellido: ");
+            FieldBuscar.setVisible(true);
+            BotonBuscar.setVisible(true);
+        }
+        
+    }//GEN-LAST:event_ComboBuscarActionPerformed
+
+    private void FieldBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FieldBuscarKeyTyped
+
+    }//GEN-LAST:event_FieldBuscarKeyTyped
+    
+    public void cargarTabla(){
+        modelo.addColumn("DNI");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Domicilio");
+        modelo.addColumn("Ciudad");
+        modelo.addColumn("Telefono");
+        TablaClientes.setModel(modelo);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonBuscar;
+    private javax.swing.JComboBox<String> ComboBuscar;
+    private javax.swing.JTextField FieldBuscar;
+    private javax.swing.JTable TablaClientes;
+    private javax.swing.JLabel TextoBuscar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -22,8 +22,7 @@ public class Directorio
         directorio.put(telefono, contacto);
     }
     
-    public Contacto busarContacto(Long numeroTelefono)
-    {
+    public Contacto busarContacto(Long numeroTelefono){
         
         // Atencion hay q ver el valor q retorna si el telefono no esta almacenado
         return (directorio.get(numeroTelefono));
@@ -53,5 +52,8 @@ public ArrayList<Contacto> buscarContactos(String ciudad) {
     
     public void borrarContacto(Long telefono) {
         directorio.remove(telefono);
+    }
+    public Set<Map.Entry<Long, Contacto>> ObtenerContactos() {
+        return directorio.entrySet();
     }
 }
